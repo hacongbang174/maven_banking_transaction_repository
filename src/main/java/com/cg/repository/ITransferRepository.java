@@ -13,9 +13,17 @@ import java.util.List;
 
 @Repository
 public interface ITransferRepository extends JpaRepository<Transfer, Long> {
-    @Transactional
-    @Query(value = "SELECT * FROM vw_transfer_info", nativeQuery = true)
-//    @Procedure("sp_get_transfer_info")
+    @Query(value = "SELECT NEW com.cg.model.dto.TransferInfoDTO (" +
+            "t.transferId, " +
+            "t.senderId, " +
+            "t.senderName, " +
+            "t.recipientId, " +
+            "t.recipientName, " +
+            "t.transferAmount, " +
+            "t.transactionAmount, " +
+            "t.fees, " +
+            "t.feesAmount) " +
+            "FROM vw_transfer_info AS t", nativeQuery = true)
     List<TransferInfoDTO> getTransferInfo();
     @Query(value = "CALL transfer(:senderID, :recipientID, :amount)",nativeQuery = true)
     boolean transfer(@Param("senderID") Long senderID, @Param("recipientID") Long recipientID, @Param("amount") BigDecimal amount);

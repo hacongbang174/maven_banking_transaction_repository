@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.util.Date;
 
 @Entity
 @Immutable
@@ -25,23 +24,25 @@ public class TransferInfoDTO {
     private long recipientId;
     private String recipientName;
     private BigDecimal transferAmount;
-    private int fee;
-    private BigDecimal feeAmount;
-    private Date transferDate;
+    private BigDecimal transactionAmount;
+    private int fees;
+    private BigDecimal feesAmount;
+
 
     public TransferInfoDTO() {
     }
 
-    public TransferInfoDTO(Long id, long senderId, String senderName, long recipientId, String recipientName, BigDecimal transferAmount, int fee, BigDecimal feeAmount, Date transferDate) {
+    public TransferInfoDTO(Long id, long senderId, String senderName, long recipientId, String recipientName, BigDecimal transferAmount, BigDecimal transactionAmount, int fees, BigDecimal feesAmount) {
         this.id = id;
         this.senderId = senderId;
         this.senderName = senderName;
         this.recipientId = recipientId;
         this.recipientName = recipientName;
         this.transferAmount = transferAmount;
-        this.fee = fee;
-        this.feeAmount = feeAmount;
-        this.transferDate = transferDate;
+        this.transactionAmount = transactionAmount;
+        this.fees = fees;
+        this.feesAmount = feesAmount;
+
     }
 
     public Long getId() {
@@ -92,28 +93,29 @@ public class TransferInfoDTO {
         this.transferAmount = transferAmount;
     }
 
-    public int getFee() {
-        return fee;
+    public BigDecimal getTransactionAmount() {
+        return transactionAmount;
     }
 
-    public void setFee(int fee) {
-        this.fee = fee;
+    public void setTransactionAmount(BigDecimal transactionAmount) {
+        this.transactionAmount = transactionAmount;
     }
 
-    public BigDecimal getFeeAmount() {
-        return feeAmount;
+    public int getFees() {
+        return fees;
     }
 
-    public void setFeeAmount(BigDecimal feeAmount) {
-        this.feeAmount = feeAmount;
+    public void setFees(int fees) {
+        this.fees = fees;
     }
 
-    public Date getTransferDate() {
-        return transferDate;
+    public BigDecimal getFeesAmount() {
+        return feesAmount;
     }
 
-    public void setTransferDate(Date transferDate) {
-        this.transferDate = transferDate;
+    public void setFeesAmount(BigDecimal feesAmount) {
+        this.feesAmount = feesAmount;
     }
+
 
 }

@@ -3,6 +3,7 @@ package com.cg.controller;
 import com.cg.model.Customer;
 import com.cg.model.Transfer;
 import com.cg.model.dto.CustomerDTO;
+import com.cg.model.dto.TransferInfoDTO;
 import com.cg.service.customer.ICustomerService;
 import com.cg.service.transfer.ITransferService;
 import com.cg.utils.AmountValidationUtils;
@@ -295,7 +296,7 @@ public class CustomerController {
     @GetMapping("/transferInfo")
     public ModelAndView showTransfer() {
         ModelAndView modelAndView = new ModelAndView("/customers/listTransfer");
-        List<Transfer> transfers = transferService.findAll();
+        List<TransferInfoDTO> transfers = transferService.getTransferInfo();
         modelAndView.addObject("transfers", transfers);
         return modelAndView;
     }

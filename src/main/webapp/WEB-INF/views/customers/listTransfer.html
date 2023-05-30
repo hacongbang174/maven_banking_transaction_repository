@@ -32,7 +32,9 @@
       <tr>
         <th STYLE="text-align: center">#</th>
         <th STYLE="text-align: center">Sender ID</th>
+        <th STYLE="text-align: center">Sender Name</th>
         <th STYLE="text-align: center">Recipient ID</th>
+        <th STYLE="text-align: center">Recipient Name</th>
         <th STYLE="text-align: center">Transfer Amount</th>
         <th STYLE="text-align: center">Fees (%)</th>
         <th STYLE="text-align: center">Fees Amount</th>
@@ -41,15 +43,17 @@
       </thead>
       <tbody id="tbCustomer">
 
-      <th:block th:each="transfers : ${transfers}">
+      <th:block th:each="transfer : ${transfers}">
         <tr>
-          <td STYLE="text-align: center" th:text="${transfers.id}"></td>
-          <td STYLE="text-align: center" th:text="${transfers.sender_id}"></td>
-          <td STYLE="text-align: center" th:text="${transfers.recipient_id}"></td>
-          <td STYLE="text-align: center" th:text="${transfers.transfer_amount}"></td>
-          <td STYLE="text-align: center" th:text="${transfers.fees}"></td>
-          <td STYLE="text-align: center" th:text="${transfers.fees_amount}"></td>
-          <td STYLE="text-align: center" th:text="${transfers.transaction_amount}"></td>
+          <td STYLE="text-align: center" th:text="${transfer.id}"></td>
+          <td STYLE="text-align: center" th:text="${transfer.sender.id}"></td>
+          <td STYLE="text-align: center" th:text="${transfer.sender.fullName}"></td>
+          <td STYLE="text-align: center" th:text="${transfer.recipient.id}"></td>
+          <td STYLE="text-align: center" th:text="${transfer.recipient.fullName}"></td>
+          <td STYLE="text-align: center" th:text="${transfer.transferAmount}"></td>
+          <td STYLE="text-align: center" th:text="${transfer.fees}"></td>
+          <td STYLE="text-align: center" th:text="${transfer.feesAmount}"></td>
+          <td STYLE="text-align: center" th:text="${transfer.transactionAmount}"></td>
         </tr>
       </th:block>
       </tbody>

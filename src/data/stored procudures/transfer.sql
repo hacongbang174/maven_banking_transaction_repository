@@ -18,7 +18,7 @@ BEGIN
 						IF transaction_amount < (SELECT balance FROM customers WHERE id = sender_id) THEN
 							UPDATE customers SET balance =  @balance_sender WHERE id = sender_id;
 							UPDATE customers SET balance = @balance_recipient WHERE id = recipient_id;
-							insert into transfers (created_at,fees, fees_amount, transaction_amount, transfer_amount, recipient_id, sender_id)
+							insert into transfers (createdAt, fees, feesAmount, transactionAmount, transferAmount, recipient_id, sender_id)
 							values (CURDATE(),0.10, fees_amount, amount + fees_amount , amount, recipient_id, sender_id);
 							COMMIT;
 							SET success = TRUE;
