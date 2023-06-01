@@ -19,6 +19,9 @@ public interface ICustomerService extends IGenaralService<Customer> {
     boolean existsByIdAndDeletedFalse(long id);
 
     void suspendCustomer(long id);
+    boolean existsByPhoneAndIdIsNot(String phone, Long id);
+
+    boolean existsByEmailAndIdIsNot(String email, Long id);
 
     boolean existsByEmail(String email);
 

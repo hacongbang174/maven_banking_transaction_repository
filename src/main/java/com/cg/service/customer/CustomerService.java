@@ -75,6 +75,16 @@ public class CustomerService implements ICustomerService{
     }
 
     @Override
+    public boolean existsByPhoneAndIdIsNot(String phone, Long id) {
+        return customerRepository.existsByPhoneAndIdIsNot(phone,id);
+    }
+
+    @Override
+    public boolean existsByEmailAndIdIsNot(String email, Long id) {
+        return customerRepository.existsByEmailAndIdIsNot(email,id);
+    }
+
+    @Override
     public boolean existsByEmail(String email) {
         return customerRepository.existsByEmail(email.toLowerCase());
     }

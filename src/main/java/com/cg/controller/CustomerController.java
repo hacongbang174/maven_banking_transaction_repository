@@ -98,11 +98,11 @@ public class CustomerController {
         String email = currentCustomer.getEmail().trim().toLowerCase();
         String address = currentCustomer.getAddress().trim();
 
-        if (customerService.existsByPhone(phone)) {
+        if (customerService.existsByPhoneAndIdIsNot(phone,id)) {
             bindingResult.addError(new ObjectError("phoneExists", "Phone number has existed!"));
         }
 
-        if (customerService.existsByEmail(email)) {
+        if (customerService.existsByEmailAndIdIsNot(email,id)) {
             bindingResult.addError(new ObjectError("emailExists", "Email address has existed!"));
         }
 

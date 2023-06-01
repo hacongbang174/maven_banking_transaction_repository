@@ -53,6 +53,9 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
     void suspendCustomer(@Param("id") long id);
 
     List<Customer> findAllByIdIsNotAndDeletedFalse(long id);
+    boolean existsByPhoneAndIdIsNot(String phone, Long id);
+
+    boolean existsByEmailAndIdIsNot(String email, Long id);
 
     boolean existsByEmail(String email);
 
