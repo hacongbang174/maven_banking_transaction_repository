@@ -20,8 +20,6 @@ public interface ICustomerService extends IGenaralService<Customer> {
 
     void suspendCustomer(long id);
 
-    void deposit (long id, BigDecimal amount);
-
     boolean existsByEmail(String email);
 
     boolean existsByPhone(String phone);

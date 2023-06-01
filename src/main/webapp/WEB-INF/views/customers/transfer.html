@@ -52,7 +52,7 @@
                 <div class="mb-3 float-left col-lg-3 col-sm-12 col-md-6">
                     <label for="recipientName" class="form-label">Recipient Name</label>
                     <select id="recipientName" name="recipientId" class="form-control">
-                        <th:block  th:each="recipient :${recipients}">
+                        <th:block th:each="recipient :${recipients}">
                             <option th:value="*{recipient.id}" th:text="*{recipient.fullName}"></option>
                         </th:block>
                     </select>
@@ -82,11 +82,11 @@
 
 <th:block th:replace="/customers/layout/script :: script"></th:block>
 <script>
-    document.addEventListener("input", () =>{
+    document.addEventListener("input", () => {
         let fee = Number(document.getElementById("fees").value);
         let transferAmount = Number(document.getElementById("transfer").value);
-        let transactionFee =  transferAmount * fee / 100;
-        document.getElementById("total").value = transactionFee + transferAmount;
+        let transactionFee = transferAmount * fee / 100;
+        document.getElementById("total").value = Math.round(transactionFee + transferAmount);
     })
 </script>
 </body>

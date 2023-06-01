@@ -1,11 +1,13 @@
 CREATE DEFINER=`root`@`localhost` PROCEDURE `update_customer`(
-IN id_current BIGINT,
-IN name_update varchar(255),
-IN email_update varchar(50),
-IN phone_update varchar(255),
-IN address_update varchar(255))
+	IN id_current BIGINT,
+	IN name_update varchar(255),
+	IN email_update varchar(50),
+	IN phone_update varchar(255),
+	IN address_update varchar(255),
+    OUT success BOOLEAN
+    )
 BEGIN
-	DECLARE success BOOLEAN DEFAULT FALSE;
+
     START TRANSACTION;
 
     UPDATE customers 
@@ -18,6 +20,8 @@ BEGIN
 
     IF ROW_COUNT() > 0 THEN
         SET success = TRUE;
+	ELSE
+		SET success = FALSE;
     END IF;
 
     IF success THEN

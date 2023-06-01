@@ -52,13 +52,6 @@ public interface ICustomerRepository extends JpaRepository<Customer, Long> {
             "WHERE c.id = :id")
     void suspendCustomer(@Param("id") long id);
 
-    @Modifying
-    @Transactional
-    @Query("UPDATE Customer c " +
-            "SET c.balance = :amount " +
-            "WHERE c.id = :id")
-    void deposit(@Param("id") long id, @Param("amount") BigDecimal amount);
-
     List<Customer> findAllByIdIsNotAndDeletedFalse(long id);
 
     boolean existsByEmail(String email);

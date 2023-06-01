@@ -29,7 +29,7 @@ public class Transfer {
     @Column(nullable = false)
     private BigDecimal fees;
     @Column(nullable = false)
-    private BigDecimal feesAmount;
+        private BigDecimal feesAmount;
 
     @Column(nullable = false, precision = 12)
     @NotNull(message = "Total amount must NOT be empty.")

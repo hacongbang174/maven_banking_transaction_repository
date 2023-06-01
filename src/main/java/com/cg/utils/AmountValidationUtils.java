@@ -8,7 +8,7 @@ public class AmountValidationUtils {
         if (amount.toString().equals("")) {
             errors.add("Amount must NOT be empty.");
         }else{
-            if (!Pattern.matches("^(?:1\\d{2,11}|[2-9]\\d{2,11}|1\\d{0,1}|[2-9]\\d{0,2}|[0-9])$", amount.toString())) {
+            if (!Pattern.matches("\\b([1-9]\\d{2,11}|999999999999)\\b", amount.toString())) {
                 errors.add("Amount must be greater than 100 and less than or equal to 12 digits.");
             }
         }

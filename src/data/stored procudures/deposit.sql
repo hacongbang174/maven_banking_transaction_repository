@@ -1,27 +1,35 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `deposit`(IN id_customer BIGINT, IN amount DECIMAL(65,0))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `deposit`(
+    IN id_customer BIGINT, 
+    IN amount DECIMAL(12,0),
+    OUT success BOOLEAN
+)
 BEGIN
-IF id_customer > 0 THEN
-		IF (SELECT checkIdAvailable(id_customer)) THEN
-			IF (SELECT validateAmount(amount)) THEN
-				SET @balance = (SELECT balance FROM customers WHERE id = id_customer) + amount;
-				IF (SELECT validateAmount(@balance)) THEN
-					UPDATE `customers` SET balance = @balance WHERE id = id_customer;
-					COMMIT;
-					SELECT 'Giao dịch thành công.' AS `message`;
-				ELSE
-					ROLLBACK;
-					SELECT 'Tổng tiền gửi vượt quá định mức. Tổng tiền gửi nhỏ hơn 12 chữ số.' AS `message`;
-                END IF;
-			ELSE
-				ROLLBACK;
-				SELECT 'Số tiền gửi không hợp lệ. Phải lớn hơn 0 và nhỏ hơn 12 chữ số.' AS `message`;
-			END IF;
+    DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING
+    BEGIN
+        ROLLBACK;
+        SET success = FALSE;
+    END;
+
+    START TRANSACTION;
+
+    UPDATE `customers` SET balance = balance + amount WHERE id = id_customer;
+    IF ROW_COUNT() > 0 THEN
+		INSERT INTO `deposits` (createdAt, transactionAmount, customer_id)
+        VALUES (CURDATE(), amount, id_customer);
+		IF ROW_COUNT() > 0 THEN
+			SET success = TRUE;
 		ELSE
-			ROLLBACK;
-			SELECT 'ID hiện tại không có.' AS `message`;
+			SET success = FALSE;
 		END IF;
     ELSE
-		ROLLBACK;
-		SELECT 'ID không hợp lệ. ID phải là số nguyên và lớn hơn 0' AS `message`;
+        SET success = FALSE;
     END IF;
+    
+    IF success THEN
+        COMMIT;
+    ELSE
+        ROLLBACK;
+    END IF;
+
+    SELECT success;
 END

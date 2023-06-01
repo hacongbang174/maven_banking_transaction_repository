@@ -75,12 +75,6 @@ public class CustomerService implements ICustomerService{
     }
 
     @Override
-    public void deposit(long id, BigDecimal amount) {
-        customerRepository.deposit(id,amount);
-    }
-
-
-    @Override
     public boolean existsByEmail(String email) {
         return customerRepository.existsByEmail(email.toLowerCase());
     }

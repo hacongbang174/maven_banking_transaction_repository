@@ -1,7 +1,7 @@
 package com.cg.service.transfer;
 
 import com.cg.model.Transfer;
-import com.cg.model.dto.TransferInfoDTO;
+import com.cg.model.dto.ITransferInfoDTO;
 import com.cg.repository.ITransferRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,7 +42,7 @@ public class TransferService implements ITransferService{
     }
 
     @Override
-    public List<TransferInfoDTO> getTransferInfo() {
+    public List<ITransferInfoDTO> getTransferInfo() {
         return transferRepository.getTransferInfo();
     }
 
