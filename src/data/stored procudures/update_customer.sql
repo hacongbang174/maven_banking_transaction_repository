@@ -3,11 +3,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `update_customer`(
 	IN name_update varchar(255),
 	IN email_update varchar(50),
 	IN phone_update varchar(255),
-	IN address_update varchar(255),
-    OUT success BOOLEAN
+	IN address_update varchar(255)
     )
 BEGIN
-
+	DECLARE success BOOLEAN;
     START TRANSACTION;
 
     UPDATE customers 

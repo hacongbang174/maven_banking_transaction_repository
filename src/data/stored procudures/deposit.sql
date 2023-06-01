@@ -1,9 +1,9 @@
 CREATE DEFINER=`root`@`localhost` PROCEDURE `deposit`(
     IN id_customer BIGINT, 
-    IN amount DECIMAL(12,0),
-    OUT success BOOLEAN
+    IN amount DECIMAL(12,0)
 )
 BEGIN
+	DECLARE success BOOLEAN;
     DECLARE EXIT HANDLER FOR SQLEXCEPTION, SQLWARNING
     BEGIN
         ROLLBACK;

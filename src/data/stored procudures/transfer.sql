@@ -2,8 +2,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `transfer`(
 	IN fees BIGINT,
 	IN sender_id BIGINT, 
 	IN recipient_id BIGINT, 
-	IN amount DECIMAL(12,0),
-	OUT success BOOLEAN
+	IN amount DECIMAL(12,0)
 )
 BEGIN
 	DECLARE success BOOLEAN DEFAULT TRUE;
